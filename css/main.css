@@ -1,0 +1,115 @@
+:root {
+  --main-color1: #403a59;
+  --main-color2: #483549;
+  --main-color3: #427cb9;
+  --main-bg-color1: #cddeef;
+  --main-bg-color2: #e3dbe4;
+}
+
+body{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	background: linear-gradient(to bottom right, var(--main-bg-color1), var(--main-bg-color2));
+	padding-top: 100px;
+	font-family: 'Play';
+}
+
+#pf-main-box{
+	background: #f3f3f7;
+	padding: 15px;
+	border-radius: 20px;
+	min-height: calc(100vh - 200px);
+}
+#pf-main-box > .row{min-height: 100%;}
+#pf-sidebar-box{
+	background: linear-gradient(to bottom right, #403a59, #483549);
+    color: #fff;
+	border-radius: 20px;
+	margin: -15px 0 -15px;
+	display: flex;
+	flex-direction: column;
+	padding: 15px 40px;
+}
+#pf-sidebar-box{
+	background: linear-gradient(to bottom right, var(--main-color1), var(--main-color2));
+    color: #fff;
+	border-radius: 20px;
+	margin: -15px 0 -15px;
+	display: flex;
+	flex-direction: column;
+	padding: 40px;
+	position:relative
+}
+#pf-sidebar-box:before{content:"";position: absolute;left: 0;right: 0;top: 0;bottom: 0;background: linear-gradient(to bottom right, var(--main-color1), var(--main-color2));border-radius: 20px;z-index: 1;opacity: 0.8;}
+#pf-sidebar-box{
+	background-image: url(../img/1.jpg);
+    background-position: center;
+    background-size: cover;
+	background-attachment: fixed;
+}
+.pf-sidebar-inner{z-index:2}
+.pf-sidebar-inner.pfs-sticky {
+    position: sticky;
+    top: 30px;
+}
+.pf-logo_box{text-align: center;margin-bottom: 20px}
+
+/****/
+#pf-sidebar-box .menu-main{margin: 0 -40px;padding: 0;list-style: none;}
+#pf-sidebar-box .menu-main li{position: relative;}
+#pf-sidebar-box .menu-main li a{
+	border: 1px solid rgba(0, 0, 0, 0.19);
+	border-bottom: 0;
+	-webkit-box-shadow: 0 1px 0 rgb(255 255 255 / 8%) inset;
+	box-shadow: 0 1px 0 rgb(255 255 255 / 8%) inset;
+	color: #fff;
+	font-size: 1.1rem;
+	padding: 11px 30px;
+	text-decoration: none;
+	text-shadow: 0 1px 1px rgb(0 0 0 / 35%);
+	cursor: pointer;
+	letter-spacing: 1px;
+	display: block;
+	}
+#pf-sidebar-box .menu-main li a:active, #pf-sidebar-box .menu-main li a:focus{background: none}
+#pf-sidebar-box .menu-main li a:hover, #pf-sidebar-box .menu-main li a.router-link-active{background: rgb(0 0 0 / 12%);color: #eeeeee;}
+#pf-sidebar-box .menu-main li a i{margin-right: 5px;vertical-align: -1px;}
+/*******/
+#pf-content-box{
+	padding: 20px 40px;
+    display: flex;
+    flex-flow: column;
+}
+header form input{
+	display: block;
+	width: 100%;
+	padding: 12px 15px 10px;
+	font-size: 1rem;
+	font-weight: 400;
+	color: #777;
+	background-color: #ffffff;
+	border: none;
+	border-radius: 15px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	resize: none;
+	outline: none;
+	box-shadow: 0px 0px 3px rgb(0 0 0 / 35%) inset;
+}
+/*******/
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
