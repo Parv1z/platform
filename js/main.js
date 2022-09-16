@@ -1,12 +1,18 @@
-const sidebarMenu = {
+import pageMain from './components/pageMain.js';
+import pageNews from './components/pageNews.js';
+import pageService from './components/pageService.js';
+import pageAbout from './components/pageAbout.js';
+import pageContacts from './components/pageContacts.js';
+
+const mainMenu = {
 	data() {
 		return {
-			menuItems : [
-				{url : '/', title : 'Главная страница', ico : 'ic-home'},
-				{url : '/news', title : 'Новости', ico : 'ic-book'},
-				{url : '/service', title : 'Услуги', ico : 'ic-cog'},
-				{url : '/about', title : 'О компании', ico : 'ic-info'},
-				{url : '/contacts', title : 'Контакты', ico : 'ic-location'},
+			menuItems: [
+				{url: '/', title: 'Главная страница', ico: 'ic-home'},
+				{url: '/news', title: 'Новости', ico: 'ic-book'},
+				{url: '/service', title: 'Услуги', ico: 'ic-cog'},
+				{url: '/about', title: 'О компании', ico: 'ic-info'},
+				{url: '/contacts', title: 'Контакты', ico: 'ic-location'},
 			]
 		}
 	},
@@ -18,11 +24,6 @@ const sidebarMenu = {
 }
 
 const componentHeader = {
-	data() {
-		return {
-			
-		}
-	},
 	template: 	`<header>
 					<form action="/search" method="get">
 						<input type="text" name="query" value="" placeholder="Найти на сайте">
@@ -30,45 +31,26 @@ const componentHeader = {
 				</header>`
 }
 
-const pageMain = {
-	data() {
-		return {
-			title : 'Главная страница'
-		}
-	},
-	template: 	`<h1> {{ title }} </h1>`
-}
-
-const pageNews = {
-	data() {
-		return {
-			title : 'Новости'
-		}
-	},
-	template: 	`<h1> {{ title }} </h1>`
-}
-
-const pageService = {
-	data() {
-		return {
-			title : 'Услуги'
-		}
-	},
-	template: 	`<h1> {{ title }} </h1>`
-}
-
 const routes = [
 	{
-		path : '/',
-		component : pageMain
+		path: '/',
+		component: pageMain
 	},
 	{
-		path : '/news',
-		component : pageNews
+		path: '/news',
+		component: pageNews
 	},
 	{
-		path : '/service',
-		component : pageService
+		path: '/service',
+		component: pageService
+	},
+	{
+		path: '/about',
+		component: pageAbout
+	},
+	{
+		path: '/contacts',
+		component: pageContacts
 	}
 ]
 
@@ -80,10 +62,10 @@ const router = VueRouter.createRouter({
 const App = Vue.createApp({
 	data() {
 		return {
-			title : 'Шаблон Platform',
+			title: 'Шаблон Platform',
 		}
 	},
-	components: {sidebarMenu, componentHeader, pageMain, pageNews, pageService},
+	components: {mainMenu, componentHeader },
 	template: 	`<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-12" id="pf-main-box">
@@ -94,21 +76,20 @@ const App = Vue.createApp({
 											<a href="/"><img src="img/logo.svg" alt="Logo"></a>
 										</div>
 										<nav>
-											<sidebar-menu></sidebar-menu>
+											<main-menu></sidebar-main>
 										</nav>
 									</div>
 								</aside>
 								<section class="col-9" id="pf-content-box">
 									<div class="row">
-										<div class="col-9">
+										<div class="col-8">
 											<component-header></component-header>
+											<router-view></router-view>
+										</div>
+										<div class="col-4">
+										sidebar
 										</div>
 									</div>
-									<transition name="slide-fade">
-										<keep-alive>
-											<router-view></router-view>
-										</keep-alive>
-									</transition>
 								</section>
 							</div>
 						</div>
