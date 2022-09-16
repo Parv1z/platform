@@ -4,41 +4,19 @@ import pageService from './components/pageService.js';
 import pageAbout from './components/pageAbout.js';
 import pageContacts from './components/pageContacts.js';
 
-const mainMenu = {
-	data() {
-		return {
-			menuItems: [
-				{url: '/', title: 'Главная страница', ico: 'ic-home'},
-				{url: '/news', title: 'Новости', ico: 'ic-book'},
-				{url: '/service', title: 'Услуги', ico: 'ic-cog'},
-				{url: '/about', title: 'О компании', ico: 'ic-info'},
-				{url: '/contacts', title: 'Контакты', ico: 'ic-location'},
-			]
-		}
-	},
-	template: 	`<ul class="nav flex-column menu-main">
-					<li v-for="menu in menuItems">
-						<router-link :to="menu.url"><i :class="menu.ico"></i> {{ menu.title }}</router-link>
-					</li>
-				</ul>`
-}
-
-const componentHeader = {
-	template: 	`<header>
-					<form action="/search" method="get">
-						<input type="text" name="query" value="" placeholder="Найти на сайте">
-					</form>
-				</header>`
-}
+import mainMenu from './widgets/mainMenu.js';
+import search from './widgets/search.js';
 
 const routes = [
 	{
 		path: '/',
-		component: pageMain
+		component: pageMain,
+		meta: pageMain.data()
 	},
 	{
 		path: '/news',
-		component: pageNews
+		component: pageNews,
+		meta: pageNews.data()
 	},
 	{
 		path: '/service',
@@ -59,13 +37,18 @@ const router = VueRouter.createRouter({
 	routes,
 })
 
+router.afterEach((to, from) => {
+	App.$data.isSidebar = to.meta.isSidebar
+})
+
 const App = Vue.createApp({
 	data() {
 		return {
 			title: 'Шаблон Platform',
+			isSidebar: true
 		}
 	},
-	components: {mainMenu, componentHeader },
+	components: {mainMenu, search },
 	template: 	`<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-12" id="pf-main-box">
@@ -76,17 +59,19 @@ const App = Vue.createApp({
 											<a href="/"><img src="img/logo.svg" alt="Logo"></a>
 										</div>
 										<nav>
-											<main-menu></sidebar-main>
+											<main-menu></main-menu>
 										</nav>
 									</div>
 								</aside>
 								<section class="col-9" id="pf-content-box">
 									<div class="row">
-										<div class="col-8">
-											<component-header></component-header>
+										<div :class="isSidebar ? 'col-8' : 'col-12'">
+											<header>
+												<search></search>
+											</header>
 											<router-view></router-view>
 										</div>
-										<div class="col-4">
+										<div class="col-4" v-if="isSidebar">
 										sidebar
 										</div>
 									</div>

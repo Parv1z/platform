@@ -1,7 +1,8 @@
 const pageMain = {
 	data() {
 		return {
-			title : 'Главная страница'
+			title : 'Главная страница',
+			isSidebar: true,
 		}
 	},
 	template: 	`<h1> {{ title }} </h1>

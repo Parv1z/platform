@@ -1,3 +1,4 @@
+
 const pageNews = {
 	data() {
 		return {
