@@ -6,6 +6,7 @@ import pageContacts from './components/pageContacts.js';
 
 import mainMenu from './widgets/mainMenu.js';
 import search from './widgets/search.js';
+import infoUser from './widgets/infoUser.js';
 
 const routes = [
 	{
@@ -48,7 +49,7 @@ const App = Vue.createApp({
 			isSidebar: true
 		}
 	},
-	components: {mainMenu, search },
+	components: {mainMenu, search, infoUser },
 	template: 	`<div class="container">
 					<div class="row justify-content-center">
 						<div class="col-12" id="pf-main-box">
@@ -72,7 +73,7 @@ const App = Vue.createApp({
 											<router-view></router-view>
 										</div>
 										<div class="col-4" v-if="isSidebar">
-										sidebar
+											<info-user></info-user>
 										</div>
 									</div>
 								</section>
